@@ -74,6 +74,26 @@ let total = {
 }
 
 
+function savePointsToLocalStorage() {
+    localStorage.setItem('total', JSON.stringify(total)); 
+}
+
+
+function loadPointsFromLocalStorage() {
+    const savedPoints = localStorage.getItem('total');
+    if (savedPoints) {
+        total = JSON.parse(savedPoints); 
+
+        pointsGryf.textContent = `${total.gryffondor} points pour Gryffondor`;
+        pointsSerp.textContent = `${total.serpentard} points pour Serpentard`;
+        pointsPouf.textContent = `${total.poufsouffle} points pour Poufsouffle`;
+        pointsSerd.textContent = `${total.serdaigle} points pour Serdaigle`;
+    }
+}
+
+// Appelez la fonction pour charger les points au chargement de la page
+loadPointsFromLocalStorage();
+
 function addPoints(button, inputName, pointsText, house) {
     button.addEventListener('click', (event) => {
         event.preventDefault(); 
@@ -82,6 +102,7 @@ function addPoints(button, inputName, pointsText, house) {
         total[house] += pointsAdd;
         pointsText.textContent = `${total[house]} point${total[house] > 1 ? 's' : ''}`; 
         rankingClassement();
+        savePointsToLocalStorage();
     });
 }
 
@@ -99,6 +120,8 @@ function rankingClassement() {
     houses.forEach(house => {
         classementContainer.appendChild(house.element.parentElement);
     })
+
+    savePointsToLocalStorage();
 }
 
 
