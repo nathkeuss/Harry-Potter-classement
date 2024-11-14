@@ -1,0 +1,16 @@
+@import '_header.scss';
+@import '_main.scss';
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'HarryPotter';
+    background-color: rgb(59, 56, 56);
+    color: white;
+}
+
+@font-face {
+    font-family: 'HarryPotter';
+    src: url(../font/HARRYP__.TTF);
+}

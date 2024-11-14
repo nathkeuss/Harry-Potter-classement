@@ -1,0 +1,16 @@
+header {
+    display: flex;
+    align-items: center;
+    width: 70%;
+    margin: auto;
+    div {
+        width: 50%;
+        img {
+            width: 100%;
+        }
+    }
+    h1 {
+        font-size: 80px;
+        width: 100%;
+    }
+}
