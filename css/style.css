@@ -52,11 +52,11 @@ main section .container button {
   background: none;
   border: none;
 }
-main #containerClassement div div {
+main #containerClassement div {
   display: flex;
   align-items: center;
 }
-main #containerClassement div div p {
+main #containerClassement div p {
   font-size: 30px;
   margin-left: 50px;
 }
