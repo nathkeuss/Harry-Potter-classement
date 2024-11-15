@@ -137,6 +137,13 @@ addPointsSerpentard(); // appel de la fonction pour ajouter des points à serpen
 addPointsPoufsouffle(); // appel de la fonction pour ajouter des points à poufsouffle
 addPointsSerdaigle(); // appel de la fonction pour ajouter des points à serdaigle
 
+document.addEventListener('keydown', (event) => { // 'keydown' correspond à n'importe quelle touche du clavier
+    if (event.key === 'Escape') { // escape = echap
+        localStorage.clear(); // clear le localstorage
+        window.location.reload(); // reload pour afficher les changement
+    }
+});
+
 
 
 // METHODE FINIE, FONCTIONNELLE, MAIS PLUS COMPLEXE CAR FONCTION QUI MARCHE PEUT IMPORTE LA MAISON
