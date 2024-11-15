@@ -73,26 +73,33 @@ let total = {
     serdaigle: 0,
 }
 
-
-function savePointsToLocalStorage() {
-    localStorage.setItem('total', JSON.stringify(total)); 
-}
-
-
 function loadPointsFromLocalStorage() {
-    const savedPoints = localStorage.getItem('total');
-    if (savedPoints) {
-        total = JSON.parse(savedPoints); 
-
-        pointsGryf.textContent = `${total.gryffondor} points pour Gryffondor`;
-        pointsSerp.textContent = `${total.serpentard} points pour Serpentard`;
-        pointsPouf.textContent = `${total.poufsouffle} points pour Poufsouffle`;
-        pointsSerd.textContent = `${total.serdaigle} points pour Serdaigle`;
+    if (localStorage.getItem('gryffondor')) {
+        total.gryffondor = parseInt(localStorage.getItem('gryffondor'));
     }
+    if (localStorage.getItem('serpentard')) {
+        total.serpentard = parseInt(localStorage.getItem('serpentard'));
+    }
+    if (localStorage.getItem('poufsouffle')) {
+        total.poufsouffle = parseInt(localStorage.getItem('poufsouffle'));
+    }
+    if (localStorage.getItem('serdaigle')) {
+        total.serdaigle = parseInt(localStorage.getItem('serdaigle'));
+    }
+
+    pointsGryf.textContent = `${total.gryffondor} point${total.gryffondor > 1 ? 's' : ''} pour Gryffondor`;
+    pointsSerp.textContent = `${total.serpentard} point${total.serpentard > 1 ? 's' : ''} pour Serpentard`;
+    pointsPouf.textContent = `${total.poufsouffle} point${total.poufsouffle > 1 ? 's' : ''} pour Poufsouffle`;
+    pointsSerd.textContent = `${total.serdaigle} point${total.serdaigle > 1 ? 's' : ''} pour Serdaigle`;
 }
 
-// Appelez la fonction pour charger les points au chargement de la page
+
 loadPointsFromLocalStorage();
+
+
+function savePointsToLocalStorage(house) {
+    localStorage.setItem(house, total[house]);
+}
 
 function addPoints(button, inputName, pointsText, house) {
     button.addEventListener('click', (event) => {
@@ -101,8 +108,9 @@ function addPoints(button, inputName, pointsText, house) {
         const pointsAdd = parseInt(input.value); 
         total[house] += pointsAdd;
         pointsText.textContent = `${total[house]} point${total[house] > 1 ? 's' : ''}`; 
+        
+        savePointsToLocalStorage(house);
         rankingClassement();
-        savePointsToLocalStorage();
     });
 }
 
@@ -121,7 +129,6 @@ function rankingClassement() {
         classementContainer.appendChild(house.element.parentElement);
     })
 
-    savePointsToLocalStorage();
 }
 
 
