@@ -17,6 +17,8 @@ header h1 {
 
 main {
   display: flex;
+  margin: auto;
+  width: 90%;
 }
 main section {
   width: 50%;
